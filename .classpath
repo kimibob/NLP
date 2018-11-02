@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/hanlp-portable-1.6.4.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-corenlp-3.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/lfasr-sdk-client-2.0.0.1005-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="lib/Msc.jar"/>
+	<classpathentry kind="lib" path="lib/json-jena-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/okhttp-3.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/okio-2.1.0.jar"/>
+	<classpathentry kind="lib" path="httplib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="httplib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="httplib/fluent-hc-4.5.6.jar"/>
+	<classpathentry kind="lib" path="httplib/httpclient-4.5.6.jar"/>
+	<classpathentry kind="lib" path="httplib/httpclient-cache-4.5.6.jar"/>
+	<classpathentry kind="lib" path="httplib/httpclient-win-4.5.6.jar"/>
+	<classpathentry kind="lib" path="httplib/httpcore-4.4.10.jar"/>
+	<classpathentry kind="lib" path="httplib/httpmime-4.5.6.jar"/>
+	<classpathentry kind="lib" path="httplib/jna-4.4.0.jar"/>
+	<classpathentry kind="lib" path="httplib/jna-platform-4.4.0.jar"/>
+	<classpathentry kind="lib" path="baidulib/java-sdk-4.7.0.jar"/>
+	<classpathentry kind="lib" path="baidulib/json-20160810.jar"/>
+	<classpathentry kind="lib" path="baidulib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_45"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
