@@ -135,8 +135,8 @@ public class MainNLP {
         List<SegToken> list = segmenter.process(text, SegMode.SEARCH);
 
         for (SegToken token : list) {
-
         	String word = token.word.toUpperCase();
+
         	word_list.add(word);
         	for (String s : city_sets) {
 				if(token.word.indexOf(s)!=-1){
@@ -230,12 +230,13 @@ public class MainNLP {
 	public static void main(String[] args) {
 		MainNLP nlp = new MainNLP();
  		String[] testCaseArray = {
-//				"查询7月22号10点福州仓山区海润尊品室内的中兴小区的RRC连接建立请求次数"
+//				"查询7月22号10点福州仓山区海润尊品室内的中兴小区的rrc建立成功率"
 // 				,"查询昨天博仕后家园小区E-RAB建立成功率"
-// 				,"查询10月全网的无线接通率指标"
+ 				"查询10月福州软件园的无线接通率指标"
 // 				,"查询10月22号十一点福州仓山区华为室内小区的无线接通率"
-// 				,"查询上周一至上周五福州和厦门的rrc连接建立请求次数",
- 				"上上个月全网的小区级无线掉线率"};
+// 				,"查询上周一至上周五福州和厦门的rrc连接建立请求数",
+// 				"上上个月仓山万达的无线掉线率"
+ 				};
 
 //		TimeNormalizer normalizer = new TimeNormalizer("data/TimeExp.m");
 //		normalizer.setPreferFuture(false);
@@ -259,20 +260,20 @@ public class MainNLP {
         StringBuffer sb = new StringBuffer();
         if("无线接通率".equals(kpi))
 	    	sb.append("select concat(round((sum(ENBHA06)/sum(ENBHA05)) * (sum(ENBHB06)/sum(ENBHB05)) *100.0, 2),'%') ");
-		else if("RRC连接建立成功率".equals(kpi))
+		else if("RRC连接建立成功率".equals(kpi)||"RRC建立成功率".equals(kpi))
 	    	sb.append("select concat(round(sum(ENBHA06)*100.0/sum(ENBHA05),2),'%') ");
 	    else if("E-RAB建立成功率".equals(kpi)||"ERAB建立成功率".equals(kpi))
 	    	sb.append("select concat(round((sum(ENBHB06)*100.0/sum(ENBHB05)),2),'%') ");
-	    else if("RRC连接建立请求次数".equals(kpi))
+	    else if("RRC连接建立请求数".equals(kpi)||"RRC建立请求数".equals(kpi))
 	    	sb.append("select sum(ENBHA05) ");
-	    else if("RRC连接建立成功次数".equals(kpi))
+	    else if("RRC连接建立成功数".equals(kpi)||"RRC建立成功数".equals(kpi))
 	    	sb.append("select sum(ENBHA06) ");
 	    else if("E-RAB建立请求数".equals(kpi)||"ERAB建立请求数".equals(kpi))
 	    	sb.append("select sum(ENBHB05) ");
 	    else if("E-RAB建立成功数".equals(kpi)||"ERAB建立成功数".equals(kpi))
 	    	sb.append("select sum(ENBHB06) ");
-	    else if("小区级无线掉线率".equals(kpi))
-	    	sb.append("select concat(to_char((sum(ENBHC07) - sum(ENBHC07_10))*100.0 / (sum(ENBHC02)+sum(ENBHC09_BEF)+sum(ENBHD23)+sum(ENBHA08_N)),'fm99990.00'),'%') ");
+	    else if("无线掉线率".equals(kpi)||"掉线率".equals(kpi))
+	    	sb.append("select concat(to_char((sum(ENBHC07) - sum(ENBHC07_10))*100.0 / (sum(ENBHC02)+sum(ENBHC09_BEF)),'fm99990.00'),'%') ");
 	    else
 	    	throw new RuntimeException("查询无效，未知的指标名称。");
 	    	//return "Invalid query request! unknown kpi!";
@@ -306,20 +307,20 @@ public class MainNLP {
 		StringBuffer sb = new StringBuffer();
 		if("无线接通率".equals(kpi))
 	    	sb.append("select concat(round((sum(ENBHA06)/sum(ENBHA05)) * (sum(ENBHB06)/sum(ENBHB05)) *100.0, 2),'%') ");
-		else if("RRC连接建立成功率".equals(kpi))
+		else if("RRC连接建立成功率".equals(kpi)||"RRC建立成功率".equals(kpi))
 	    	sb.append("select concat(round(sum(ENBHA06)*100.0/sum(ENBHA05),2),'%') ");
 	    else if("E-RAB建立成功率".equals(kpi)||"ERAB建立成功率".equals(kpi))
 	    	sb.append("select concat(round((sum(ENBHB06)*100.0/sum(ENBHB05)),2),'%') ");
-	    else if("RRC连接建立请求次数".equals(kpi))
+	    else if("RRC连接建立请求数".equals(kpi)||"RRC建立请求数".equals(kpi))
 	    	sb.append("select sum(ENBHA05) ");
-	    else if("RRC连接建立成功次数".equals(kpi))
+	    else if("RRC连接建立成功数".equals(kpi)||"RRC建立成功数".equals(kpi))
 	    	sb.append("select sum(ENBHA06) ");
 	    else if("E-RAB建立请求数".equals(kpi)||"ERAB建立请求数".equals(kpi))
 	    	sb.append("select sum(ENBHB05) ");
 	    else if("E-RAB建立成功数".equals(kpi)||"ERAB建立成功数".equals(kpi))
 	    	sb.append("select sum(ENBHB06) ");
-	    else if("小区级无线掉线率".equals(kpi))
-	    	sb.append("select concat(to_char((sum(ENBHC07) - sum(ENBHC07_10))*100.0 / (sum(ENBHC02)+sum(ENBHC09_BEF)+sum(ENBHD23)+sum(ENBHA08_N)),'fm99990.00'),'%') ");
+	    else if("无线掉线率".equals(kpi)||"掉线率".equals(kpi))
+	    	sb.append("select concat(to_char((sum(ENBHC07) - sum(ENBHC07_10))*100.0 / (sum(ENBHC02)+sum(ENBHC09_BEF)),'fm99990.00'),'%') ");
 	    else
 	    	throw new RuntimeException("查询无效，未知的指标名称。");
 	    	//return "Invalid query request! unknown kpi!";
@@ -352,20 +353,20 @@ public class MainNLP {
 		StringBuffer sb = new StringBuffer();
 		if("无线接通率".equals(kpi))
 	    	sb.append("select concat(round((sum(ENBHA06)/sum(ENBHA05)) * (sum(ENBHB06)/sum(ENBHB05)) *100.0, 2),'%') ");
-		else if("RRC连接建立成功率".equals(kpi))
+		else if("RRC连接建立成功率".equals(kpi)||"RRC建立成功率".equals(kpi))
 	    	sb.append("select concat(round(sum(ENBHA06)*100.0/sum(ENBHA05),2),'%') ");
 	    else if("E-RAB建立成功率".equals(kpi)||"ERAB建立成功率".equals(kpi))
 	    	sb.append("select concat(round((sum(ENBHB06)*100.0/sum(ENBHB05)),2),'%') ");
-	    else if("RRC连接建立请求次数".equals(kpi))
+	    else if("RRC连接建立请求数".equals(kpi)||"RRC建立请求数".equals(kpi))
 	    	sb.append("select sum(ENBHA05) ");
-	    else if("RRC连接建立成功次数".equals(kpi))
+	    else if("RRC连接建立成功数".equals(kpi)||"RRC建立成功数".equals(kpi))
 	    	sb.append("select sum(ENBHA06) ");
 	    else if("E-RAB建立请求数".equals(kpi)||"ERAB建立请求数".equals(kpi))
 	    	sb.append("select sum(ENBHB05) ");
 	    else if("E-RAB建立成功数".equals(kpi)||"ERAB建立成功数".equals(kpi))
 	    	sb.append("select sum(ENBHB06) ");
-	    else if("小区级无线掉线率".equals(kpi))
-	    	sb.append("select concat(to_char((sum(ENBHC07) - sum(ENBHC07_10))*100.0 / (sum(ENBHC02)+sum(ENBHC09_BEF)+sum(ENBHD23)+sum(ENBHA08_N)),'fm99990.00'),'%') ");
+	    else if("无线掉线率".equals(kpi)||"掉线率".equals(kpi))
+	    	sb.append("select concat(to_char((sum(ENBHC07) - sum(ENBHC07_10))*100.0 / (sum(ENBHC02)+sum(ENBHC09_BEF)),'fm99990.00'),'%') ");
 	    else
 	    	throw new RuntimeException("查询无效，未知的指标名称。");
 	    	//return "Invalid query request! unknown kpi!";
